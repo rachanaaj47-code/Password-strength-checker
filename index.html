@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cyberpunk Password Strength Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Audiowide&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glitch" aria-hidden="true"></div>
+
+  <header class="container">
+    <h1 class="title">Password Strength Analyzer</h1>
+  </header>
+
+  <main class="container" id="main">
+    <form class="panel" onsubmit="return false;" aria-labelledby="password-label">
+      <label id="password-label" class="label" for="password-input">Enter Password</label>
+      <div class="input-wrap">
+        <input id="password-input" class="input" type="password" placeholder="Type to analyze..." autocomplete="off" aria-describedby="strength-live" aria-controls="strength-live"/>
+        <button id="reveal-btn" class="btn ghost" type="button" aria-pressed="false" aria-label="Reveal password">👁️</button>
+      </div>
+
+      <div class="meter" role="img" aria-label="Password strength meter">
+        <div class="meter-fill" id="meter-fill"></div>
+        <div class="meter-overlay"></div>
+      </div>
+      <div class="score-badge" id="score-badge" aria-live="polite" aria-atomic="true"></div>
+
+      <div class="legend" aria-hidden="false">
+        <span class="legend-item" id="legend-weak">Weak</span>
+        <span class="legend-item" id="legend-moderate">Moderate</span>
+        <span class="legend-item" id="legend-strong">Strong</span>
+        <span class="legend-item" id="legend-very-strong">Very Strong</span>
+      </div>
+
+      <div id="strength-live" class="sr-live" aria-live="polite"></div>
+
+      <div class="rec-panel" id="rec-panel">
+        <h2 class="rec-title">Security Recommendations</h2>
+        <ul id="rec-list" class="recs" aria-label="Recommendations list">
+          <!-- Populated dynamically -->
+        </ul>
+      </div>
+    </form>
+  </main>
+
+  <footer class="container footer">
+    <small>Backend: Flask • Analyzer logic from <code>pw_strength_checker.py</code></small>
+  </footer>
+
+  <script src="/static/js/app.js" defer></script>
+</body>
+</html>
